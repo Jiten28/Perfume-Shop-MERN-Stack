@@ -32,7 +32,7 @@ export default function ProductPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-start pt-24 pb-10 px-4">
+    <div className="min-h-screen flex justify-center items-start pt-24 pb-10 px-4">
       <div className="bg-white shadow-lg rounded-2xl p-8 max-w-5xl w-full">
         <div className="grid md:grid-cols-2 gap-8">
           
