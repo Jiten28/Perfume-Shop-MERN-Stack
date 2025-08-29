@@ -1,17 +1,16 @@
-// POST /api/products/:id/reviews
-router.post("/:id/reviews", async (req, res) => {
-  try {
-    const product = await Product.findById(req.params.id);
-    if (!product) return res.status(404).json({ message: "Product not found" });
+import express from "express";
+import {
+  getProducts,
+  getProductById,
+  addReview,
+  getTopRatedProducts,
+} from "../controllers/productController.js";
 
-    const { name, rating, comment } = req.body;
-    const newReview = { name, rating: Number(rating), comment };
+const router = express.Router();
 
-    product.reviews.push(newReview);
-    await product.save();
+router.get("/", getProducts);
+router.get("/top", getTopRatedProducts);
+router.get("/:id", getProductById);
+router.post("/:id/reviews", addReview);
 
-    res.status(201).json({ message: "Review added", reviews: product.reviews });
-  } catch (err) {
-    res.status(500).json({ message: "Server error", error: err.message });
-  }
-});
+export default router;
