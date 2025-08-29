@@ -1,0 +1,45 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: "Raleway", serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Floral gradient background */
+  background: linear-gradient(
+    to right,
+    #f3f2ec,   /* soft cream */
+    #ffe6eb,   /* light pink */
+    #fff0f5,   /* lavender blush */
+    #e6f2ff    /* soft sky blue */
+  );
+
+  overflow-x: hidden;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  50%  { transform: translateY(-20px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes sway {
+  0%   { transform: translateX(0px); }
+  50%  { transform: translateX(15px); }
+  100% { transform: translateX(0px); }
+}
+
+/* Perfume bottles floating in background */
+.floating-bottle {
+  position: absolute;
+  opacity: 0.12;
+  z-index: 0;
+  animation: float 6s ease-in-out infinite, sway 10s ease-in-out infinite;
+}
