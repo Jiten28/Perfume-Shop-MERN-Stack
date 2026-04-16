@@ -25,8 +25,41 @@ It showcases backend (Node.js, MongoDB) + frontend (React, Tailwind, Vite) with 
 ```
 
 PerfumeShop/
-├── backend/   → Node.js, Express, MongoDB
-└── frontend/  → React, TailwindCSS, Vite
+│
+├── backend/
+│ ├── controllers/
+│ │ └── productController.js
+│ ├── models/
+│ │ └── Product.js
+│ ├── routes/
+│ │ └── productRoutes.js
+│ ├── seed.js
+│ ├── server.js
+│ ├── package.json
+│ └── .env
+│
+├── frontend/
+│ ├── public/
+│ │ └── images/ (perfume images)
+│ ├── src/
+│ │ ├── components/
+│ │ │ ├── Navbar.jsx
+│ │ │ ├── Footer.jsx
+│ │ │ └── ProductCard.jsx
+│ │ ├── pages/
+│ │ │ ├── HomePage.jsx
+│ │ │ ├── CollectionsPage.jsx
+│ │ │ ├── ProductPage.jsx
+│ │ │ └── ContactPage.jsx
+│ │ ├── App.jsx
+│ │ └── main.jsx
+│ ├── index.css
+│ ├── package.json
+│ ├── tailwind.config.js
+│ └── vite.config.js
+│
+├── README.md
+└── screenshots/
 
 ````
 
