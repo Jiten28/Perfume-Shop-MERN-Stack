@@ -4,6 +4,11 @@
 This is a full-stack perfume shop web app built for Olcademy’s Web Development Internship Assignment.  
 It showcases backend (Node.js, MongoDB) + frontend (React, Tailwind, Vite) with real product data and reviews.
 
+## Live Deployment
+**Frontend:** https://perfume-shop-digital.netlify.app/
+
+**Backend:** https://perfume-shop-backend-fryp.onrender.com
+
 ## 🚀 Features
 - Responsive Navbar
 - Hero Banner with CTA
