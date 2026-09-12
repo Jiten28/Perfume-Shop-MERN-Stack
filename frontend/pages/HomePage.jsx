@@ -9,7 +9,7 @@ export default function HomePage() {
   // Fetch trending perfumes (first 6)
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/products")
+      .get("https://perfume-shop-backend-fryp.onrender.com/api/products")
       .then((res) => setTrending(res.data.slice(0, 6)))
       .catch((err) => console.error("Error fetching trending products:", err));
   }, []);
@@ -17,7 +17,7 @@ export default function HomePage() {
   // Fetch top-rated perfumes
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/products/top")
+      .get("https://perfume-shop-backend-fryp.onrender.com/api/products/top")
       .then((res) => setTopRated(res.data))
       .catch((err) => console.error("Error fetching top-rated products:", err));
   }, []);
@@ -53,8 +53,8 @@ export default function HomePage() {
               name={p.name}
               desc={p.description}
               price={p.price}
-              img1={`http://localhost:5000${p.images[0]}`}
-              img2={p.images[1] ? `http://localhost:5000${p.images[1]}` : ""}
+              img1={`https://perfume-shop-backend-fryp.onrender.com${p.images[0]}`}
+              img2={p.images[1] ? `https://perfume-shop-backend-fryp.onrender.com${p.images[1]}` : ""}
             />
           ))}
         </div>
@@ -74,8 +74,8 @@ export default function HomePage() {
                 name={p.name}
                 desc={p.description}
                 price={p.price}
-                img1={`http://localhost:5000${p.images[0]}`}
-                img2={p.images[1] ? `http://localhost:5000${p.images[1]}` : ""}
+                img1={`https://perfume-shop-backend-fryp.onrender.com${p.images[0]}`}
+                img2={p.images[1] ? `https://perfume-shop-backend-fryp.onrender.com${p.images[1]}` : ""}
               />
             ))}
           </div>

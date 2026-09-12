@@ -6,7 +6,7 @@ function CollectionsPage() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/products")
+    axios.get("https://perfume-shop-backend-fryp.onrender.com/api/products")
       .then(res => setProducts(res.data))
       .catch(err => console.error("Error fetching products:", err));
   }, []);
@@ -22,7 +22,7 @@ function CollectionsPage() {
             className="bg-white border rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition"
           >
             <img
-              src={`http://localhost:5000${p.images[0]}`}
+              src={`https://perfume-shop-backend-fryp.onrender.com${p.images[0]}`}
               alt={p.name}
               className="h-64 w-48 object-cover mx-auto rounded-t-xl "
             />

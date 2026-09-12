@@ -15,7 +15,7 @@ export default function ProductPage() {
   const [form, setForm] = useState({ name: "", rating: 5, comment: "" });
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/products/${id}`)
+    axios.get(`https://perfume-shop-backend-fryp.onrender.com/api/products/${id}`)
       .then(res => {
         setProduct(res.data);
         setReviews(res.data.reviews || []);
@@ -40,7 +40,7 @@ export default function ProductPage() {
   const submitReview = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:5000/api/products/${id}/reviews`, form);
+      const res = await axios.post(`https://perfume-shop-backend-fryp.onrender.com/api/products/${id}/reviews`, form);
       setReviews(res.data.reviews);
       setForm({ name: "", rating: 5, comment: "" });
     } catch (err) {
@@ -76,7 +76,7 @@ export default function ProductPage() {
             <AnimatePresence custom={direction}>
               <motion.img
                 key={currentImage}
-                src={`http://localhost:5000${product.images[currentImage]}`}
+                src={`https://perfume-shop-backend-fryp.onrender.com${product.images[currentImage]}`}
                 alt={product.name}
                 className="absolute w-full h-96 object-contain"
                 initial={{ x: direction > 0 ? 300 : -300, opacity: 0 }}
