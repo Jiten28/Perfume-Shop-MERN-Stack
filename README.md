@@ -189,8 +189,8 @@ These captures are the ones already attached to the repository.
 
 ### Product page
 
-<img width="1262" height="879" alt="Product page" src="https://github.com/user-attachments/assets/f5e805e7-b553-4611-923f-43dc70ac7f9d" />
-<img width="1269" height="885" alt="Product page continued" src="https://github.com/user-attachments/assets/35bc4060-88e7-49d1-b0b0-d7c125e8c5d3" />
+<img width="1901" height="1078" alt="image" src="https://github.com/user-attachments/assets/bd435e36-12af-4979-aaf3-1295cedb85c2" />
+
 
 ### Reviews
 
