@@ -1,21 +1,19 @@
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
       colors: {
-        primary: "#C0392B",   // Burgundy red
-        secondary: "#247BA0", // Teal
-        gold: "#D4AF37",      // Luxury gold
-        background: "#FAF9F6",// Soft ivory
-        charcoal: "#2D2D2D",  // Text
-        muted: "#6E6E6E",     // Subtext
+        ivory: "#F3EEE6",
+        paper: "#FBFAF7",
+        well: "#F7F4EF",
+        ink: "#1A1714",
+        stone: "#746C64",
+        line: "#E3DBD1",
+        gold: "#A68456",
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        serif: ["Playfair Display", "serif"],
+        sans: ["Outfit", "Avenir Next", "Segoe UI", "sans-serif"],
+        serif: ["Cormorant Garamond", "Palatino Linotype", "Palatino", "serif"],
       },
     },
   },
