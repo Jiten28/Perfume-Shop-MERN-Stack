@@ -194,12 +194,13 @@ These captures are the ones already attached to the repository.
 
 ### Reviews
 
-<img width="1847" height="886" alt="Reviews" src="https://github.com/user-attachments/assets/0ff17520-7876-4c98-bf1c-c3d91e04b5f8" />
-<img width="1861" height="883" alt="Reviews continued" src="https://github.com/user-attachments/assets/6ebee438-87b5-45ba-8682-ddd5d53e7592" />
+<img width="1896" height="1078" alt="image" src="https://github.com/user-attachments/assets/a5613f72-8b7a-42b1-b752-3cf02dc47605" />
 
-### Share
 
-<img width="1862" height="883" alt="Share button" src="https://github.com/user-attachments/assets/f548f4c8-ce47-43d9-9b12-942ff47148ea" />
+### Cart
+
+<img width="1900" height="1078" alt="image" src="https://github.com/user-attachments/assets/25b58f14-49b9-482a-9c0b-96abe5be9c33" />
+
 
 ## Author
 
