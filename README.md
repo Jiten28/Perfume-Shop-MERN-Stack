@@ -179,13 +179,13 @@ These captures are the ones already attached to the repository.
 
 ### Homepage
 
-<img width="1262" height="884" alt="Homepage" src="https://github.com/user-attachments/assets/a1e5fe1e-7a54-4664-bb55-b679e36eb7fb" />
-<img width="1265" height="886" alt="Homepage continued" src="https://github.com/user-attachments/assets/8639fcab-2c0f-4cfc-bd12-afadfe64951d" />
+<img width="1440" height="3274" alt="image" src="https://github.com/user-attachments/assets/8f599bf6-a2a7-4e41-8f84-61d8da8f2015" />
+
 
 ### Collections
 
-<img width="1862" height="885" alt="Collections page" src="https://github.com/user-attachments/assets/542174bb-9630-4cd7-b066-79da7c450dfc" />
-<img width="1863" height="885" alt="Collections page continued" src="https://github.com/user-attachments/assets/9960a6bb-3d10-414e-81bd-79ad0499a79c" />
+<img width="1896" height="1078" alt="image" src="https://github.com/user-attachments/assets/d6feca87-0458-4293-9852-d4bb03153a0b" />
+
 
 ### Product page
 
