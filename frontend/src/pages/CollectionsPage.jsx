@@ -57,7 +57,7 @@ export default function CollectionsPage() {
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
+    <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
       <p className="text-[11px] uppercase tracking-[0.32em] text-stone">The edit</p>
       <div className="rule mt-4" />
       <h1 className="mt-5 font-serif text-5xl font-medium md:text-6xl">Collections</h1>
@@ -106,7 +106,7 @@ export default function CollectionsPage() {
 
       {error && <p className="mt-8 text-sm text-stone">{error}</p>}
 
-      <div className="mt-10 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
         {loading
           ? Array.from({ length: 6 }, (_, index) => <ProductCardSkeleton key={index} />)
           : filtered.map((product) => <ProductCard key={product._id} product={product} />)}

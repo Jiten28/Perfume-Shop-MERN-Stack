@@ -4,7 +4,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import ProductCard from "../components/ProductCard";
 import { ProductCardSkeleton } from "../components/Skeleton";
-import { API_BASE, averageRating, imageUrl } from "../lib/api";
+import { API_BASE, averageRating, bottleNotes, formatPrice, imageUrl } from "../lib/api";
 
 const promises = ["Curated houses", "Discreet packaging", "Gift-ready"];
 
@@ -42,12 +42,14 @@ export default function HomePage() {
     };
   }, []);
 
-  const trending = products.slice(0, 6);
+  const trending = products.slice(0, 3);
   const featured = products[0];
+  const spotlight = products[3] || products[1];
+  const notes = bottleNotes(spotlight?.description || "");
 
   return (
     <div>
-      <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-14 md:grid-cols-2 md:py-20">
+      <section className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-10 md:grid-cols-2 md:py-14">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -71,15 +73,8 @@ export default function HomePage() {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-        >
-          <Link
-            to={featured ? `/product/${featured._id}` : "/collections"}
-            className="block bg-well"
-          >
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.1 }}>
+          <Link to={featured ? `/product/${featured._id}` : "/collections"} className="block bg-well">
             <div className="flex aspect-[4/5] items-center justify-center">
               {featured ? (
                 <img
@@ -101,16 +96,16 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      <section className="border-y border-line">
-        <ul className="mx-auto grid max-w-6xl gap-4 px-6 py-5 text-center text-[11px] uppercase tracking-[0.22em] text-stone sm:grid-cols-3">
+      <section className="border-y border-line bg-paper/70">
+        <ul className="mx-auto grid max-w-6xl gap-4 px-6 py-4 text-center text-[11px] uppercase tracking-[0.22em] text-stone sm:grid-cols-3">
           {promises.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-        <div className="mb-10 flex items-end justify-between gap-4">
+      <section className="mx-auto max-w-6xl px-6 py-10 md:py-14">
+        <div className="mb-8 flex items-end justify-between gap-4">
           <div>
             <p className="text-[11px] uppercase tracking-[0.28em] text-stone">This season</p>
             <h2 className="mt-2 font-serif text-4xl font-medium md:text-5xl">Trending</h2>
@@ -122,35 +117,84 @@ export default function HomePage() {
 
         {error && <p className="text-sm text-stone">{error}</p>}
 
-        <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {loading
-            ? Array.from({ length: 6 }, (_, index) => <ProductCardSkeleton key={index} />)
+            ? Array.from({ length: 3 }, (_, index) => <ProductCardSkeleton key={index} />)
             : trending.map((product) => <ProductCard key={product._id} product={product} />)}
         </div>
       </section>
 
-      <section className="border-y border-line bg-paper">
-        <p className="mx-auto max-w-3xl px-6 py-14 text-center font-serif text-3xl font-medium leading-snug md:py-16 md:text-4xl">
-          Ten fragrances, edited for contrast — floral, woody, fresh, and dark.
-        </p>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-        <div className="mb-10">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-stone">From the reviews</p>
-          <h2 className="mt-2 font-serif text-4xl font-medium md:text-5xl">Top rated</h2>
-        </div>
-        {topRated.length > 0 ? (
-          <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {topRated.map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
+      {spotlight && (
+        <section className="border-y border-line bg-sand">
+          <div className="mx-auto grid max-w-6xl items-center gap-8 px-6 py-10 md:grid-cols-[1.05fr_0.95fr] md:py-12">
+            <Link to={`/product/${spotlight._id}`} className="block bg-well">
+              <div className="flex aspect-[5/4] items-center justify-center">
+                <img
+                  src={imageUrl(spotlight.images?.[0])}
+                  alt={spotlight.name}
+                  className="h-[78%] w-[62%] object-contain mix-blend-multiply"
+                />
+              </div>
+            </Link>
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.28em] text-stone">From the edit</p>
+              <h2 className="mt-3 font-serif text-4xl font-medium leading-none md:text-6xl">{spotlight.name}</h2>
+              <p className="mt-5 max-w-md text-sm leading-relaxed text-stone">{spotlight.description}</p>
+              {notes.length > 0 && (
+                <ul className="mt-6 space-y-2">
+                  {notes.map((note) => (
+                    <li key={note} className="flex items-center gap-3 text-sm">
+                      <span className="h-px w-4 bg-gold" />
+                      {note}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <div className="mt-8 flex items-center gap-6">
+                <p className="text-sm">{formatPrice(spotlight.price)}</p>
+                <Link to={`/product/${spotlight._id}`} className="btn-primary">
+                  View the bottle
+                </Link>
+              </div>
+            </div>
           </div>
-        ) : (
-          <p className="max-w-md text-sm leading-relaxed text-stone">
-            Ratings will place a fragrance here once the first reviews arrive.
-          </p>
-        )}
+        </section>
+      )}
+
+      <section className="bg-paper">
+        <div className="mx-auto max-w-6xl px-6 py-10 md:py-14">
+          <div className="mb-8">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-stone">From the reviews</p>
+            <h2 className="mt-2 font-serif text-4xl font-medium md:text-5xl">Top rated</h2>
+          </div>
+          {topRated.length === 1 ? (
+            <Link to={`/product/${topRated[0]._id}`} className="grid items-center gap-8 bg-well p-6 md:grid-cols-[16rem_1fr] md:p-8">
+              <img
+                src={imageUrl(topRated[0].images?.[0])}
+                alt={topRated[0].name}
+                className="mx-auto h-56 object-contain mix-blend-multiply"
+              />
+              <div>
+                <p className="font-serif text-4xl font-medium leading-none">{topRated[0].name}</p>
+                <p className="mt-4 max-w-md text-sm leading-relaxed text-stone">{topRated[0].description}</p>
+                <div className="mt-6 flex items-center gap-6">
+                  <p className="text-sm">{formatPrice(topRated[0].price)}</p>
+                  <span className="border-b border-gold pb-0.5 text-[11px] uppercase tracking-[0.18em]">View</span>
+                </div>
+              </div>
+            </Link>
+          ) : topRated.length > 1 ? (
+            <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+              {topRated.map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <p className="max-w-md text-sm leading-relaxed text-stone">
+              Ratings will place a fragrance here once the first reviews arrive.
+            </p>
+          )}
+        </div>
       </section>
     </div>
   );

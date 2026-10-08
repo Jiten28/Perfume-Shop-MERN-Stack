@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ClosingBand from "./components/ClosingBand";
+import MarginMarks from "./components/MarginMarks";
 import { ToastProvider } from "./components/Toast";
 import HomePage from "./pages/HomePage";
 import CollectionsPage from "./pages/CollectionsPage";
@@ -24,7 +26,8 @@ function App() {
       <Router>
         <ToastProvider>
           <ScrollToTop />
-          <div className="flex min-h-screen flex-col bg-ivory text-ink">
+          <div className="flex min-h-screen flex-col text-ink">
+            <MarginMarks />
             <Navbar />
             <main className="flex-1 pt-[4.5rem]">
               <Routes>
@@ -35,6 +38,7 @@ function App() {
                 <Route path="/cart" element={<CartPage />} />
               </Routes>
             </main>
+            <ClosingBand />
             <Footer />
           </div>
         </ToastProvider>

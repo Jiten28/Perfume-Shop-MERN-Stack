@@ -4,7 +4,8 @@ import axios from "axios";
 import { useCart } from "./CartContext";
 import { useToast } from "../components/Toast";
 import { ProductPageSkeleton } from "../components/Skeleton";
-import { API_BASE, formatPrice, imageUrl } from "../lib/api";
+import EditRow from "../components/EditRow";
+import { API_BASE, bottleNotes, formatPrice, imageUrl } from "../lib/api";
 
 function Stars({ value = 0, onChange }) {
   const rounded = Math.round(Number(value) || 0);
@@ -60,6 +61,7 @@ export default function ProductPage() {
   const [form, setForm] = useState({ name: "", rating: 5, comment: "" });
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState("");
+  const [others, setOthers] = useState([]);
 
   useEffect(() => {
     let activeRequest = true;
@@ -86,6 +88,16 @@ export default function ProductPage() {
       })
       .finally(() => {
         if (activeRequest) setLoading(false);
+      });
+
+    axios
+      .get(`${API_BASE}/api/products`)
+      .then((res) => {
+        if (!activeRequest) return;
+        setOthers(res.data.filter((item) => item._id !== id).slice(0, 3));
+      })
+      .catch(() => {
+        if (activeRequest) setOthers([]);
       });
 
     return () => {
@@ -277,6 +289,20 @@ export default function ProductPage() {
               </svg>
             </button>
           </div>
+
+          {bottleNotes(product.description).length > 0 && (
+            <div className="mt-10 border-t border-line pt-6">
+              <p className="label">In this bottle</p>
+              <ul className="space-y-2">
+                {bottleNotes(product.description).map((note) => (
+                  <li key={note} className="flex items-start gap-3 text-sm leading-relaxed text-stone">
+                    <span className="mt-2 h-px w-4 shrink-0 bg-gold" />
+                    <span>{note}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
 
@@ -351,6 +377,8 @@ export default function ProductPage() {
           </form>
         </div>
       </section>
+
+      <EditRow kicker="Continue" title="Also in the edit" products={others} />
     </div>
   );
 }
